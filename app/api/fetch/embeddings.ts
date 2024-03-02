@@ -20,6 +20,7 @@ export default async function splitAndEmbed(
   const nodeParser = new SimpleNodeParser({
     chunkSize: DATASOURCES_CHUNK_SIZE,
     chunkOverlap: DATASOURCES_CHUNK_OVERLAP,
+    textSplitter: new SentenceSplitter({ splitLongSentences: true }),
   });
   const nodes = nodeParser.getNodesFromDocuments([
     new Document({ text: document }),

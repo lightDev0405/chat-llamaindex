@@ -67,6 +67,7 @@
     "unified": "^10.1.2",
     "unist-util-remove": "^4.0.0",
     "use-debounce": "^9.0.4",
+    "youtube-transcript": "^1.0.6",
     "zustand": "^4.4.1"
   },
   "devDependencies": {

@@ -4,6 +4,7 @@ import rehype2remark from "rehype-remark";
 import stringify from "remark-stringify";
 import axios from "axios";
 import pdf from "pdf-parse";
+import { YoutubeTranscript } from "youtube-transcript";
 import { remove } from "unist-util-remove";
 import { URLDetailContent } from "@/app/client/fetch/url";
 
@@ -12,6 +13,32 @@ function removeCommentsAndTables() {
     remove(tree, { type: "comment" });
     remove(tree, { tagName: "table" });
   };
+}
+
+function isYouTubeLink(url: string) {
+  const pattern = /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+/;
+  return pattern.test(url);
+}
+
+async function getYouTubeSubtitles(url: string) {
+  const videoId = new URL(url).searchParams.get("v");
+  if (!videoId) {
+    throw new Error("Invalid YouTube URL");
+  }
+
+  const transcript = await YoutubeTranscript.fetchTranscript(videoId);
+  let srtContent = "";
+  transcript.forEach((item, index) => {
+    const start = new Date(item.offset).toISOString().substring(11, 23);
+    const end = new Date(item.offset + item.duration)
+      .toISOString()
+      .substring(11, 23);
+    srtContent += `${index + 1}\n${start.replace(".", ",")} --> ${end.replace(
+      ".",
+      ",",
+    )}\n${item.text}\n\n`;
+  });
+  return srtContent;
 }
 
 async function htmlToMarkdown(html: string): Promise<string> {
@@ -35,6 +62,16 @@ export async function fetchContentFromURL(
   }
 
   const contentType = response.headers.get("content-type") || "";
+
+  if (isYouTubeLink(url)) {
+    const srtContent = await getYouTubeSubtitles(url);
+    return {
+      url,
+      content: srtContent,
+      size: srtContent.length,
+      type: "text/plain",
+    };
+  }
 
   if (contentType.includes("text/html")) {
     const htmlContent = await response.text();
