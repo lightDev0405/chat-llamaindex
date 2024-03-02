@@ -13,7 +13,7 @@ const en = {
     Thinking: "Thinking…",
     InputMobile: "Enter to send",
     Input:
-      "Enter to send, Shift + Enter to wrap, enter URLs to add a PDF or HTML document to the context",
+      "Enter to send, Shift + Enter to wrap, enter URLs of PDF, YouTube videos or Blogs to use as context",
     Send: "Send",
     IsContext: "Contextual Prompt",
     LoadingURL: "Loading content...",
@@ -137,8 +137,9 @@ const en = {
   },
 
   Welcome: {
-    Title: "Chat LlamaIndex",
-    SubTitle: "Create chat bots that know your data",
+    Title: "Neo",
+    SubTitle:
+      "Load knowledge from YouTube, PDF, or Blogs then speak to create an expert",
     Quote:
       "“This tool has saved me countless hours of work and helped me apply AI features to my work faster than ever before.”",
     LoginLinkedinTitle: "Login with LinkedIn",
