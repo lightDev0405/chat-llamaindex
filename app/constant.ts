@@ -22,7 +22,7 @@ export const ALLOWED_DOCUMENT_EXTENSIONS = [
   ...ALLOWED_TEXT_EXTENSIONS,
   ...ALLOWED_IMAGE_EXTENSIONS,
 ];
-export const DOCUMENT_FILE_SIZE_LIMIT = 1024 * 1024 * 10; // 10 MB
+export const DOCUMENT_FILE_SIZE_LIMIT = 1024 * 1024 * 100; // 10 MB
 
 export const DOCUMENT_TYPES = [
   "text/html",
