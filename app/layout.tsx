@@ -7,6 +7,8 @@ import { type Metadata } from "next";
 import { Toaster } from "@/app/components/ui/toaster";
 import { ThemeProvider } from "@/app/components/layout/theme-provider";
 
+import { ClerkProvider } from "@clerk/nextjs";
+
 export const metadata: Metadata = {
   title: Locale.Welcome.Title,
   description: Locale.Welcome.SubTitle,
@@ -31,17 +33,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="manifest" href="/site.webmanifest"></link>
-        <script src="/serviceWorkerRegister.js" defer></script>
-      </head>
-      <body>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-          <Toaster />
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <head>
+          <link rel="manifest" href="/site.webmanifest"></link>
+          <script src="/serviceWorkerRegister.js" defer></script>
+        </head>
+        <body>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {children}
+            <Toaster />
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
