@@ -39,8 +39,8 @@ export default function BotList() {
 
   return (
     <div className="flex-1" onClick={onClickContainer}>
-      <div className="space-y-2 mb-4">
-        <Dialog>
+      {/* <div className="space-y-2 mb-4"> */}
+      {/* <Dialog>
           <DialogTrigger asChild>
             <Button className="w-full" onClick={onClickCreate}>
               <PlusCircle className="mr-2 h-4 w-4" /> {Locale.Bot.Page.Create}
@@ -51,14 +51,14 @@ export default function BotList() {
               <EditBotDialogContent />
             </BotItemContextProvider>
           )}
-        </Dialog>
-        <Input
+        </Dialog> */}
+      {/* <Input
           className="text-center"
           type="text"
           placeholder={Locale.Bot.Page.Search(allBots.length)}
           onInput={(e) => setSearchText(e.currentTarget.value)}
-        />
-      </div>
+        /> */}
+      {/* </div> */}
       <ScrollArea className="h-[60vh] pr-0 md:pr-3">
         {botList.map((b) => (
           <BotItem key={b.id} bot={b} />

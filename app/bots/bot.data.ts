@@ -2,33 +2,58 @@ import { Bot } from "@/app/store/bot";
 import { nanoid } from "nanoid";
 import Locale from "../locales";
 import { ModelType } from "@/app/client/platforms/llm";
-import { createEmptySession } from "../store";
+import { ChatMessage, createEmptySession } from "../store";
 
 const TEMPLATE = (PERSONA: string) =>
   `I want you to act as a ${PERSONA}. I will provide you with the context needed to solve my problem. Use intelligent, simple, and understandable language. Be concise. It is helpful to explain your thoughts step by step and with bullet points.`;
 
 type DemoBot = Omit<Bot, "session">;
 
+const systemGuidelinesMessage: ChatMessage = {
+  role: "system",
+  content: `
+  system:
+  You are an expert medical doctor who always answers questions with the most relevant information using the tools at your disposal.
+  These tools have information regarding symptoms that the user has stated.
+  Here are some guidelines that you must follow:
+  - * provide information on their specialist departments,the availability of medical coordinators and interpreters and any remote interpretation services
+  - * Add details on their website for further information would be helpful. 
+  - * provide a list of such hospitals with their contact details and reception hours
+  - * Answer in the language of the user_query
+  
+  
+  conversation:
+  {{ conversation }}
+  
+  user:
+  ## Retrieved Documents
+  {{ documentation }}
+  
+  ## User Question
+  {{user_query}}
+  `,
+};
+
 export const DEMO_BOTS: DemoBot[] = [
   {
     id: "1",
-    avatar: "1f916",
-    name: "GPT-4 Vision Preview",
+    avatar: "1fa7a",
+    name: "Mutilingual Medical Assistant in Japan",
     botHello: "Hello! How can I assist you today?",
-    context: [],
+    context: [systemGuidelinesMessage],
     modelConfig: {
-      model: "gpt-4-vision-preview",
+      model: "gpt-4-1106-preview",
       temperature: 0.3,
       maxTokens: 4096,
       sendMemory: false,
     },
     readOnly: true,
-    hideContext: false,
+    hideContext: true,
   },
   {
     id: "2",
     avatar: "1f916",
-    name: "My Documents",
+    name: "My files",
     botHello: "Hello! How can I assist you today?",
     context: [],
     modelConfig: {
@@ -37,7 +62,7 @@ export const DEMO_BOTS: DemoBot[] = [
       maxTokens: 4096,
       sendMemory: true,
     },
-    readOnly: true,
+    readOnly: false,
     hideContext: false,
   },
 ];
