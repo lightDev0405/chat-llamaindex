@@ -12,25 +12,16 @@ type DemoBot = Omit<Bot, "session">;
 const systemGuidelinesMessage: ChatMessage = {
   role: "system",
   content: `
-  system:
+
   You are an expert medical doctor who always answers questions with the most relevant information using the tools at your disposal.
-  These tools have information regarding symptoms that the user has stated.
+  These tools have information regarding symptoms that the user has stated. Do not hallucinate or provide false information about telephone numbers, addresses, websites, or any other information. Make sure it comes from the context provided.
   Here are some guidelines that you must follow:
   - * provide information on their specialist departments,the availability of medical coordinators and interpreters and any remote interpretation services
   - * Add details on their website for further information would be helpful. 
   - * provide a list of such hospitals with their contact details and reception hours
-  - * Answer in the language of the user_query
-  
-  
-  conversation:
-  {{ conversation }}
-  
-  user:
-  ## Retrieved Documents
-  {{ documentation }}
-  
-  ## User Question
-  {{user_query}}
+  - * Answer in the language of the user question
+
+
   `,
 };
 
@@ -48,6 +39,7 @@ export const DEMO_BOTS: DemoBot[] = [
       sendMemory: false,
     },
     readOnly: true,
+    datasource: "ClinicsJapan",
     hideContext: true,
   },
   {

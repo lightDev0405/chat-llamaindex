@@ -3,6 +3,9 @@ import {
   storageContextFromDefaults,
   SimpleDirectoryReader,
   VectorStoreIndex,
+  OpenAIEmbedding,
+  SimpleNodeParser,
+  SentenceSplitter,
 } from "llamaindex";
 
 import {
@@ -74,11 +77,20 @@ if (!datasource) {
 
 (async () => {
   // get OPENAI_API_KEY from Next.JS's .env.development.local
-  await ensureEnv(".env.development.local");
+  // await ensureEnv(".env.development.local");
 
+  const embedModel = new OpenAIEmbedding({
+    azure: { deploymentName: "text-embedding-ada-002" },
+  });
+
+  
   const serviceContext = serviceContextFromDefaults({
+    embedModel: embedModel,
     chunkSize: DATASOURCES_CHUNK_SIZE,
     chunkOverlap: DATASOURCES_CHUNK_OVERLAP,
+    nodeParser: new SimpleNodeParser({
+      splitLongSentences: true,
+    }),
   });
 
   await generateDatasource(serviceContext, datasource);
