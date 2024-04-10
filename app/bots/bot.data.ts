@@ -30,7 +30,37 @@ export const DEMO_BOTS: DemoBot[] = [
     id: "1",
     avatar: "1fa7a",
     name: "Mutilingual Medical Assistant in Japan",
-    botHello: "Hello! How can I assist you today?",
+    botHello: `
+    ■Personal info
+    -name
+    -gender
+    -DOB
+    -hospital name which you want to visit
+    -Do you have a card from the hospital?
+    -preferred date, time to visit hospital 
+    -phone number 
+    
+    ■questions particularly for non-JP
+    -period of residence in JP
+    -home address in JP
+    -are you insured in JP
+    -which type of insurance 
+    -country of citizen
+    -language 
+    -religious considerations
+    
+    ■question about medical condition 
+    -allergy 
+    -history of surgery 
+    -blood transfusion history 
+    -medical history 
+    -alcohol
+    -smoking 
+    -do you require immediate treatment 
+    -ailments/symptoms 
+    -when did it start
+    -medication you’re currently taking 
+    -under lying disease`,
     context: [systemGuidelinesMessage],
     modelConfig: {
       model: "gpt-4-1106-preview",
