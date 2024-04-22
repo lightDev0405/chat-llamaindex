@@ -13,7 +13,7 @@ const en = {
     Thinking: "Thinking…",
     InputMobile: "Enter to send",
     Input:
-      "Enter to send, Shift + Enter to wrap, enter URLs of PDF, YouTube videos or Blogs to use as context",
+      "Enter to send, Shift + Enter to wrap, enter URLs of clinics or hospitals to use as context",
     Send: "Send",
     IsContext: "Contextual Prompt",
     LoadingURL: "Loading content...",
@@ -137,9 +137,9 @@ const en = {
   },
 
   Welcome: {
-    Title: "Neo",
+    Title: "Healthcare in Japan",
     SubTitle:
-      "Load knowledge from YouTube, PDF, or Blogs then speak to create an expert",
+      "Your multilingual medical assistant in Japan.",
     Quote:
       "“This tool has saved me countless hours of work and helped me apply AI features to my work faster than ever before.”",
     LoginLinkedinTitle: "Login with LinkedIn",
