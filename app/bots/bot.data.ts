@@ -20,6 +20,8 @@ const systemGuidelinesMessage: ChatMessage = {
   - * Add details on their website for further information would be helpful. 
   - * provide a list of such hospitals with their contact details and reception hours
   - * Answer in the language of the user question
+  - * Always ask relevant follow-up questions to further help with the user
+  - * If the question is not a medical question, you can ask the user to rephrase the question
 
 
   `,
@@ -29,38 +31,14 @@ export const DEMO_BOTS: DemoBot[] = [
   {
     id: "1",
     avatar: "1fa7a",
-    name: "Mutilingual Medical Assistant in Japan",
+    name: "Multilingual Medical Assistant in Japan",
     botHello: `
-    ■Personal info
-    -name
-    -gender
-    -DOB
-    -hospital name which you want to visit
-    -Do you have a card from the hospital?
-    -preferred date, time to visit hospital 
-    -phone number 
-    
-    ■questions particularly for non-JP
-    -period of residence in JP
-    -home address in JP
-    -are you insured in JP
-    -which type of insurance 
-    -country of citizen
-    -language 
-    -religious considerations
-    
-    ■question about medical condition 
-    -allergy 
-    -history of surgery 
-    -blood transfusion history 
-    -medical history 
-    -alcohol
-    -smoking 
-    -do you require immediate treatment 
-    -ailments/symptoms 
-    -when did it start
-    -medication you’re currently taking 
-    -under lying disease`,
+    Hello, I am a multilingual medical assistant in Japan. I can help you with information about medical clinics in Japan. Please include your Symptoms and Location in your questions.
+    ■ Sample questions you can ask:
+    - My child has a fever, where should I go in Tokyo?
+    - I have allergies, which clinic in Osaka can I visit?
+    - I need a dentist in Kyoto, can you help me?
+    `,
     context: [systemGuidelinesMessage],
     modelConfig: {
       model: "gpt-4-1106-preview",
@@ -72,21 +50,21 @@ export const DEMO_BOTS: DemoBot[] = [
     datasource: "ClinicsJapan",
     hideContext: true,
   },
-  {
-    id: "2",
-    avatar: "1f916",
-    name: "My files",
-    botHello: "Hello! How can I assist you today?",
-    context: [],
-    modelConfig: {
-      model: "gpt-4-1106-preview",
-      temperature: 0.5,
-      maxTokens: 4096,
-      sendMemory: true,
-    },
-    readOnly: false,
-    hideContext: false,
-  },
+  // {
+  //   id: "2",
+  //   avatar: "1f916",
+  //   name: "My files",
+  //   botHello: "Hello! How can I assist you today?",
+  //   context: [],
+  //   modelConfig: {
+  //     model: "gpt-4-1106-preview",
+  //     temperature: 0.5,
+  //     maxTokens: 4096,
+  //     sendMemory: true,
+  //   },
+  //   readOnly: false,
+  //   hideContext: false,
+  // },
 ];
 
 export const createDemoBots = (): Record<string, Bot> => {
