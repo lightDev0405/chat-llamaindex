@@ -41,7 +41,7 @@ export const DEMO_BOTS: DemoBot[] = [
     `,
     context: [systemGuidelinesMessage],
     modelConfig: {
-      model: "gpt-4-1106-preview",
+      model: "gpt-4",
       temperature: 0.3,
       maxTokens: 4096,
       sendMemory: false,
@@ -50,21 +50,21 @@ export const DEMO_BOTS: DemoBot[] = [
     datasource: "ClinicsJapan",
     hideContext: true,
   },
-  // {
-  //   id: "2",
-  //   avatar: "1f916",
-  //   name: "My files",
-  //   botHello: "Hello! How can I assist you today?",
-  //   context: [],
-  //   modelConfig: {
-  //     model: "gpt-4-1106-preview",
-  //     temperature: 0.5,
-  //     maxTokens: 4096,
-  //     sendMemory: true,
-  //   },
-  //   readOnly: false,
-  //   hideContext: false,
-  // },
+  {
+    id: "2",
+    avatar: "1f916",
+    name: "My files",
+    botHello: "Hello! How can I assist you today?",
+    context: [],
+    modelConfig: {
+      model: "gpt-4",
+      temperature: 0.5,
+      maxTokens: 4096,
+      sendMemory: true,
+    },
+    readOnly: false,
+    hideContext: false,
+  },
 ];
 
 export const createDemoBots = (): Record<string, Bot> => {
@@ -83,7 +83,7 @@ export const createEmptyBot = (): Bot => ({
   name: Locale.Store.DefaultBotName,
   context: [],
   modelConfig: {
-    model: "gpt-4-1106-preview" as ModelType,
+    model: "gpt-4" as ModelType,
     temperature: 0.5,
     maxTokens: 4096,
     sendMemory: true,

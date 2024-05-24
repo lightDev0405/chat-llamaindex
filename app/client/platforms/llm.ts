@@ -31,6 +31,7 @@ export interface ResponseMessage {
 }
 
 export const ALL_MODELS = [
+  "gpt-4o",
   "gpt-4",
   "gpt-4-1106-preview",
   "gpt-4-vision-preview",
@@ -63,7 +64,7 @@ export interface ChatOptions {
 const CHAT_PATH = "/api/llm";
 
 export function isVisionModel(model: ModelType) {
-  return model === "gpt-4-vision-preview";
+  return model === "gpt-4";
 }
 
 export class LLMApi {

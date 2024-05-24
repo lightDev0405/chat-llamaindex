@@ -153,7 +153,7 @@ export async function POST(request: NextRequest) {
 
     const llm = new OpenAI({
       azure: {
-        deploymentName: "gpt-4",
+        deploymentName: "gpt-4o",
       },
       model: config.model,
       temperature: config.temperature,
