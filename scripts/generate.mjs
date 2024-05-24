@@ -80,7 +80,7 @@ if (!datasource) {
   // await ensureEnv(".env.development.local");
 
   const embedModel = new OpenAIEmbedding({
-    azure: { deploymentName: "text-embedding-ada-002" },
+    azure: { deploymentName: "text-embedding-3-small" },
   });
 
   
