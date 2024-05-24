@@ -17,7 +17,7 @@ export default async function splitAndEmbed(
   document: string,
 ): Promise<Embedding[]> {
   const embedModel = new OpenAIEmbedding({
-    azure: { deploymentName: "text-embedding-ada-002" },
+    azure: { deploymentName: "text-embedding-3-small" },
   });
   const nodeParser = new SimpleNodeParser({
     chunkSize: DATASOURCES_CHUNK_SIZE,
